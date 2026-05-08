@@ -1,0 +1,219 @@
+Uso Selector
+El selector es la “dirección” del elemento dentro del HTML.
+
+Cuando haces:
+
+page.$eval(selector)
+
+Playwright busca un elemento usando reglas CSS.
+
+EJEMPLO SIMPLE
+
+HTML:
+
+<h1>Hola</h1>
+
+Selector:
+
+"h1"
+
+Playwright encuentra:
+
+<h1>
+CÓMO FUNCIONA INTERNAMENTE
+page.$eval(
+  "h1",
+  el => el.innerText
+);
+
+Significa:
+
+1. busca h1
+2. toma primer elemento encontrado
+3. lo guarda en "el"
+4. ejecuta función
+5. devuelve texto
+SELECTORES MÁS IMPORTANTES
+1. TAG
+
+Busca por etiqueta HTML.
+
+<h1>
+<p>
+<button>
+
+Selector:
+
+"h1"
+"p"
+"button"
+2. CLASS
+
+HTML:
+
+<div class="card">
+
+Selector:
+
+".card"
+
+El punto (.) significa:
+
+buscar class=""
+3. ID
+
+HTML:
+
+<div id="main">
+
+Selector:
+
+"#main"
+
+El # significa:
+
+buscar id=""
+4. DESCENDIENTES
+
+HTML:
+
+<div class="card">
+  <h1>Titulo</h1>
+</div>
+
+Selector:
+
+".card h1"
+
+Significa:
+
+busca h1 dentro de .card
+5. MÚLTIPLES SELECTORES
+"h1, h2"
+
+Busca:
+
+todos los h1
+todos los h2
+6. ATRIBUTOS
+
+HTML:
+
+<input type="text">
+
+Selector:
+
+'input[type="text"]'
+DIFERENCIA ENTRE $eval Y $$eval
+$eval
+
+Busca SOLO uno.
+
+page.$eval()
+$$eval
+
+Busca MUCHOS.
+
+page.$$eval()
+EJEMPLO REAL
+
+HTML:
+
+<a href="a"></a>
+<a href="b"></a>
+<a href="c"></a>
+$eval
+page.$eval("a")
+
+Obtiene:
+
+solo el primero
+$$eval
+page.$$eval("a")
+
+Obtiene:
+
+todos
+INNER TEXT
+el.innerText
+
+Obtiene:
+
+texto visible
+HREF
+el.href
+
+Obtiene:
+
+URL del link
+SRC
+el.src
+
+Obtiene:
+
+URL imagen/video
+SELECTORES COMPLEJOS
+
+HTML:
+
+<div class="products">
+
+  <div class="card">
+    <h2>Producto</h2>
+  </div>
+
+</div>
+
+Selector:
+
+".products .card h2"
+INSPECCIONAR SELECTORES
+
+En navegador:
+
+F12
+
+Luego:
+
+inspeccionar elemento
+click derecho
+Copy selector
+LO QUE HACE TU SISTEMA AHORA
+
+Cuando mandas:
+
+{
+  "selector": "h1"
+}
+
+tu crawler hace:
+
+entra página
+↓
+busca h1
+↓
+extrae texto
+↓
+guarda resultado
+PROBLEMA REAL DEL SCRAPING
+
+Cada página tiene:
+
+HTML distinto
+clases distintas
+estructura distinta
+
+Por eso:
+
+algunos selectores sirven
+otros fallan
+POR ESO HICISTE BIEN EN PASAR A
+modo automático
+
+porque ya no dependes totalmente de:
+
+clases específicas
+IDs específicos
+HTML exacto
+
+Eso vuelve el crawler más universal.

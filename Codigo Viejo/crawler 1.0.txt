@@ -1,0 +1,201 @@
+const { chromium } = require("playwright");
+
+/*
+==================================================
+FUNCION PRINCIPAL DEL CRAWLER
+==================================================
+
+RECIBE:
+- URL
+- SELECTOR CSS
+
+HACE:
+- abre navegador
+- entra a la página
+- extrae información específica
+- devuelve resultado
+
+IDEAS FUTURAS:
+- navegador persistente
+- proxies
+- user agents aleatorios
+- screenshots automáticos
+- IA para resumir cambios
+- OCR
+- detección de errores
+- extracción múltiple
+- capturas visuales
+- análisis HTML automático
+*/
+
+async function checkPage(url, selector) {
+
+  /*
+  ==============================================
+  ABRE NAVEGADOR PLAYWRIGHT
+  ==============================================
+
+  headless: true
+  = navegador invisible
+
+  headless: false
+  = navegador visible
+  */
+
+  const browser = await chromium.launch({
+    headless: true
+  });
+
+  /*
+  ==============================================
+  CREA NUEVA PESTAÑA
+  ==============================================
+  */
+
+  const page = await browser.newPage();
+
+  /*
+  ==============================================
+  ENTRA A LA URL
+  ==============================================
+
+  waitUntil:
+  espera que cargue bien la página
+
+  timeout:
+  máximo tiempo de espera
+  */
+
+  await page.goto(url, {
+    waitUntil: "domcontentloaded",
+    timeout: 30000
+  });
+
+  /*
+  ==============================================
+  DESCARGA HTML COMPLETO
+  ==============================================
+
+  IDEAS FUTURAS:
+  - guardar HTML
+  - analizar estructura
+  - IA para detectar contenido importante
+  */
+
+  const html = await page.content();
+
+  /*
+  ==============================================
+  EXTRACCION DE DATOS
+  ==============================================
+
+  selector
+  = selector CSS dinámico
+
+  EJEMPLOS:
+
+  GitHub:
+  ".wb-break-all a"
+
+  YouTube:
+  "h1"
+
+  Precio:
+  ".price"
+
+  IDEAS FUTURAS:
+  - múltiples selectores
+  - extracción automática
+  - tablas
+  - precios
+  - noticias
+  - metadata
+  */
+
+  const content = await page.$eval(
+    selector,
+    el => el.innerText.trim()
+  );
+
+
+/*
+==============================================
+EXTRAER TITULO
+==============================================
+*/
+
+const title = await page.$eval(
+  ".topbar h1",
+  el => el.innerText.trim()
+);
+
+
+let descrpiption = null;
+
+  /*
+  ==============================================
+  CIERRA NAVEGADOR
+  ==============================================
+
+  IMPORTANTE:
+  evita consumo excesivo de RAM
+  */
+
+  await browser.close();
+
+  /*
+  ==============================================
+  RETORNA RESULTADO
+  ==============================================
+
+  url:
+  página revisada
+
+  selector:
+  selector utilizado
+
+  html:
+  html completo
+
+  content:
+  texto extraído
+
+  checkedAt:
+  fecha revisión
+  */
+
+  return {
+
+    url,
+
+    selector,
+
+    html,
+
+    content,
+
+    title,
+
+   descrpiption,
+
+    checkedAt: new Date(),
+
+  };
+
+}
+
+/*
+==================================================
+EXPORTA FUNCION
+==================================================
+
+PERMITE USAR:
+checkPage()
+
+DESDE:
+- routes
+- services
+- monitor
+*/
+
+module.exports = { checkPage };
