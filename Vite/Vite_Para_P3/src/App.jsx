@@ -1,6 +1,6 @@
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
-import ProjectCard from "./components/ProjectCard";
+import ProjectCard from "./components/Projectcard";
 import LogsPanel from "./components/LogsPanel";
 
 import "./styles/main.css";
