@@ -1,0 +1,168 @@
+GitHub Actions
+
+Sirve para automatizar cosas en GitHub.
+
+IDEA SIMPLE
+
+GitHub Actions = robots automáticos.
+
+Cuando pasa algo:
+
+push
+commit
+pull request
+horario
+release
+
+GitHub ejecuta tareas automáticamente.
+
+EJEMPLO REAL
+
+Tú haces:
+
+git push
+
+GitHub detecta:
+
+"hubo un push"
+
+y ejecuta:
+
+.github/workflows/webpack.yml
+ESA CARPETA
+.github/workflows/
+
+es MUY importante.
+
+Ahí viven los workflows automáticos.
+
+workflow = automatización
+
+Ejemplo:
+
+name: Test Project
+
+on: push
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run project
+        run: npm run build
+QUÉ HACE ESO
+
+Cuando haces:
+
+git push
+
+GitHub:
+
+crea servidor Linux temporal
+descarga tu repo
+instala paquetes
+ejecuta comandos
+verifica errores
+PARA QUÉ SIRVE
+1. TESTS AUTOMÁTICOS
+si el código rompe
+→ GitHub lo detecta
+2. DEPLOY AUTOMÁTICO
+push
+↓
+deploy automático
+
+Ejemplo:
+
+Vercel
+Netlify
+VPS
+Docker
+3. CRAWLERS AUTOMÁTICOS
+
+Tu proyecto puede hacer:
+
+cada 15 minutos
+↓
+ejecutar crawler
+↓
+guardar resultados
+
+sin abrir tu PC.
+
+4. SCRAPING EN LA NUBE
+
+GitHub Actions puede:
+
+ejecutar Node.js
+correr Playwright
+usar cron jobs
+guardar archivos
+EJEMPLO PARA TI
+
+Tu crawler podría ejecutarse:
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+
+Significa:
+
+cada 15 minutos
+
+GitHub:
+
+corre crawler
+revisa páginas
+detecta cambios
+guarda resultados
+VENTAJAS
+NO necesitas tener PC encendida
+
+GitHub ejecuta:
+
+Linux servers
+automáticamente
+TU SISTEMA FUTURO
+GitHub Actions
+↓
+ejecuta crawler
+↓
+Express API
+↓
+storage
+↓
+dashboard React
+LA EXTENSIÓN VS CODE
+
+La extensión sirve para:
+
+ver workflows
+ver logs
+ver errores
+ejecutar workflows
+monitorear pipelines
+
+sin entrar a GitHub web.
+
+ESA webpack.yml
+
+Ese archivo probablemente define:
+
+automatización actual
+
+Puedes abrirlo y te explico:
+
+línea por línea
+qué hace
+qué automatiza
+cómo usarlo con tu crawler.
