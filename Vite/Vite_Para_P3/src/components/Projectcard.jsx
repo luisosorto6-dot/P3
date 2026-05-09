@@ -1,4 +1,4 @@
-export default function ProjectCard() {
+export default function Projectcard() {
 
   return (
 
