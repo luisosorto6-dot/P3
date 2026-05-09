@@ -2,7 +2,7 @@ import Topbar from "../components/Topbar";
 
 import SystemStats from "../components/SystemStats";
 
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/Projectcard";
 
 import LogsPanel from "../components/LogsPanel";
 
