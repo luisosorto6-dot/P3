@@ -2,7 +2,7 @@ import Topbar from "../components/Topbar";
 
 import SystemStats from "../components/SystemStats";
 
-import ProjectCard from "../components/Projectcard";
+import Projectcard from "../components/Projectcard";
 
 import LogsPanel from "../components/LogsPanel";
 
@@ -28,10 +28,10 @@ export default function Dashboard() {
 
           <div className="cards-grid">
 
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
+            <Projectcard />
+            <Projectcard />
+            <Projectcard />
+            <Projectcard />
 
           </div>
 
